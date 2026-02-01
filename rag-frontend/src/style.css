@@ -1,1 +1,40 @@
 @import "tailwindcss";
+
+@theme {
+  --font-sans: "PingFang SC", "Microsoft YaHei", "Heiti SC", system-ui, sans-serif;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  @apply bg-slate-950 text-slate-200 antialiased;
+  font-family: var(--font-sans);
+}
+
+/* Custom Scrollbar for Dark Theme */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-slate-900;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-700 rounded-full border-2 border-slate-900;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-slate-600;
+}
+
+/* Element Plus Dark Mode Overrides if needed */
+.el-button--primary {
+  --el-button-bg-color: #7c3aed;
+  --el-button-border-color: #7c3aed;
+  --el-button-hover-bg-color: #6d28d9;
+  --el-button-hover-border-color: #6d28d9;
+}
