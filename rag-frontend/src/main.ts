@@ -6,7 +6,7 @@ import './style.css'
 import App from './App.vue'
 import router from './router'
 import JsonViewer from 'vue3-json-viewer'
-import 'vue3-json-viewer/dist/index.css'
+import 'vue3-json-viewer/dist/vue3-json-viewer.css'
 
 const app = createApp(App)
 
