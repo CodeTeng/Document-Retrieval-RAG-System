@@ -1,0 +1,21 @@
+fastapi
+uvicorn
+python-dotenv
+pyyaml
+pydantic
+pydantic-settings
+langchain
+langchain-community
+langchain-core
+# langchain-openai # If using OpenAI compatible APIs, or specific Alibaba SDK
+dashscope # Alibaba Cloud SDK
+faiss-cpu
+pdfplumber
+python-docx
+markdown-it-py
+chardet
+aiofiles
+python-multipart
+requests
+pytest
+httpx

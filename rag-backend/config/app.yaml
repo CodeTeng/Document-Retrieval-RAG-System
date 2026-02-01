@@ -1,0 +1,26 @@
+server:
+  host: "0.0.0.0"
+  port: 8000
+  upload_max_size: 10485760 # 10MB
+  request_timeout: 60
+
+model:
+  embedding:
+    provider: "aliyun"
+    model_name: "text-embedding-v1" # Example model name
+    api_key_env: "DASHSCOPE_API_KEY"
+  llm:
+    provider: "aliyun"
+    model_name: "qwen-turbo" # Example model name
+    api_key_env: "DASHSCOPE_API_KEY"
+    temperature: 0.7
+
+vector_db:
+  type: "faiss"
+  path: "data/vector_db"
+  similarity_threshold: 0.6
+  top_n: 3
+
+splitter:
+  chunk_size: 500
+  overlap: 50
