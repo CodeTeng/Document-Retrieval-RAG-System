@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { UploadFilled } from '@element-plus/icons-vue'
-import { ElMessage, type UploadRawFile, type UploadRequestOptions } from 'element-plus'
+import { ElMessage, genFileId, type UploadRawFile, type UploadRequestOptions } from 'element-plus'
 import { uploadDocument } from '@/api/doc'
 
 const uploadRef = ref()
@@ -10,8 +10,9 @@ const isUploading = ref(false)
 const handleExceed = (files: File[]) => {
   uploadRef.value!.clearFiles()
   const file = files[0] as UploadRawFile
-  file.uid = Date.now()
+  file.uid = genFileId()
   uploadRef.value!.handleStart(file)
+  uploadRef.value!.submit()
 }
 
 const beforeUpload = (rawFile: UploadRawFile) => {
