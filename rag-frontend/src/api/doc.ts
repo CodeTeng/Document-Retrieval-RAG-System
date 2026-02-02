@@ -26,9 +26,29 @@ export interface DocItem {
   size?: number
 }
 
-export function getDocList() {
-  return request<any, DocItem[]>({
+export interface DocListResponse {
+  total: number
+  items: DocItem[]
+  page: number
+  size: number
+}
+
+export function getDocList(params?: { page?: number; size?: number; keyword?: string }) {
+  return request<any, DocListResponse>({
     url: '/docs/list',
     method: 'get',
+    params
   })
+}
+
+export const reindexDoc = async (docId: string) => {
+  return request.post(`/docs/reindex/${docId}`)
+}
+
+export const getDocContent = async (docId: string) => {
+  return request.get(`/docs/content/${docId}`)
+}
+
+export const deleteDoc = async (docId: string) => {
+  return request.delete(`/docs/${docId}`)
 }

@@ -14,3 +14,9 @@ class DocItem(BaseModel):
     upload_time: str
     status: str
     size: Optional[int] = None
+
+class DocListResponse(BaseModel):
+    total: int
+    items: list[DocItem]
+    page: int
+    size: int
