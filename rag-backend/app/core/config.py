@@ -32,11 +32,29 @@ class Settings(BaseSettings):
         if os.path.exists(path):
             with open(path, "r", encoding="utf-8") as f:
                 config_data = yaml.safe_load(f)
-                return cls(**config_data)
+                
+                # Map YAML structure to flat settings
+                settings_dict = {}
+                if "model" in config_data:
+                    model_conf = config_data["model"]
+                    if "embedding" in model_conf:
+                        # Only set if not already in env (though env_file usually takes precedence, explicit logic helps)
+                        if not os.getenv("DASHSCOPE_API_KEY"):
+                             settings_dict["DASHSCOPE_API_KEY"] = model_conf["embedding"].get("api_key_env")
+                        settings_dict["EMBEDDING_MODEL"] = model_conf["embedding"].get("model_name")
+                    if "llm" in model_conf:
+                         settings_dict["LLM_MODEL"] = model_conf["llm"].get("model_name")
+                
+                if "vector_db" in config_data:
+                    settings_dict["VECTOR_DB_DIR"] = config_data["vector_db"].get("path")
+                
+                if "splitter" in config_data:
+                    settings_dict["CHUNK_SIZE"] = config_data["splitter"].get("chunk_size")
+                    settings_dict["CHUNK_OVERLAP"] = config_data["splitter"].get("overlap")
+                    
+                return cls(**settings_dict)
         return cls()
 
 @lru_cache()
 def get_settings():
-    # Priority: Env Vars > YAML > Defaults
-    # For now, just simple loading
-    return Settings()
+    return Settings.load_from_yaml()
