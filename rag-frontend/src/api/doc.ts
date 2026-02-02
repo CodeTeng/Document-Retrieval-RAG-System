@@ -45,10 +45,20 @@ export const reindexDoc = async (docId: string) => {
   return request.post(`/docs/reindex/${docId}`)
 }
 
+export interface DocContentResponse {
+  content: string
+}
+
 export const getDocContent = async (docId: string) => {
-  return request.get(`/docs/content/${docId}`)
+  return request<any, DocContentResponse>({
+    url: `/docs/content/${docId}`,
+    method: 'get'
+  })
 }
 
 export const deleteDoc = async (docId: string) => {
-  return request.delete(`/docs/${docId}`)
+  return request<any, any>({
+    url: `/docs/${docId}`,
+    method: 'delete'
+  })
 }

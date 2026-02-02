@@ -5,13 +5,6 @@ export interface ChatRequest {
   threshold?: number;
 }
 
-export interface ChatSource {
-  content: string;
-  score: number;
-  source: string;
-  page: number;
-}
-
 export interface ChatStep {
   step: 'init' | 'retrieving' | 'retrieved' | 'generating' | 'answer' | 'completed' | 'error';
   message?: string;

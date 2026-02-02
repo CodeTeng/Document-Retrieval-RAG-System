@@ -180,7 +180,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import DocUpload from '@/components/DocUpload.vue'
-import { UploadFilled, Search, Refresh, View } from '@element-plus/icons-vue'
 import { getDocList, reindexDoc, getDocContent, deleteDoc, type DocItem } from '@/api/doc'
 import { ElMessage, ElMessageBox } from 'element-plus'
 
