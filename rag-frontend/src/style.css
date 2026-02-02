@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "PingFang SC", "Microsoft YaHei", "Heiti SC", system-ui, sans-serif;
+  --font-sans: "Inter", "SF Pro SC", "SF Pro Text", "Helvetica Neue", "Helvetica", "PingFang SC", "Segoe UI", "Microsoft YaHei", "Arial", sans-serif;
 }
 
 html.dark {
@@ -9,7 +9,7 @@ html.dark {
 }
 
 body {
-  @apply bg-slate-950 text-slate-200 antialiased;
+  @apply bg-zinc-950 text-zinc-100 antialiased;
   font-family: var(--font-sans);
 }
 
@@ -20,15 +20,15 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-slate-900;
+  @apply bg-zinc-900;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-slate-700 rounded-full border-2 border-slate-900;
+  @apply bg-zinc-700 rounded-full border-2 border-zinc-900;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-slate-600;
+  @apply bg-zinc-600;
 }
 
 /* Element Plus Dark Mode Overrides if needed */
