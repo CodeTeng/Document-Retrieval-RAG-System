@@ -8,11 +8,11 @@ model:
   embedding:
     provider: "aliyun"
     model_name: "text-embedding-v1" # Example model name
-    api_key_env: "DASHSCOPE_API_KEY"
+    api_key_env: "sk-4f0277d401a64194a7ecea12b8939f85"
   llm:
     provider: "aliyun"
     model_name: "qwen-turbo" # Example model name
-    api_key_env: "DASHSCOPE_API_KEY"
+    api_key_env: "sk-4f0277d401a64194a7ecea12b8939f85"
     temperature: 0.7
 
 vector_db:

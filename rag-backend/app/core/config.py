@@ -1,55 +1,42 @@
-import os
+from typing import List, Optional
+from pydantic_settings import BaseSettings
+from functools import lru_cache
 import yaml
-from pydantic import BaseModel
-from typing import Optional
+import os
 
-class ServerConfig(BaseModel):
-    host: str
-    port: int
-    upload_max_size: int
-    request_timeout: int
+class Settings(BaseSettings):
+    # App
+    API_V1_STR: str = "/api"
+    PROJECT_NAME: str = "RAG Backend"
+    
+    # Storage
+    UPLOAD_DIR: str = "data/docs"
+    VECTOR_DB_DIR: str = "data/vector_db"
+    
+    # Model (Alibaba)
+    DASHSCOPE_API_KEY: Optional[str] = None
+    EMBEDDING_MODEL: str = "text-embedding-v1"
+    LLM_MODEL: str = "qwen-turbo"
+    
+    # RAG
+    CHUNK_SIZE: int = 500
+    CHUNK_OVERLAP: int = 50
+    TOP_K: int = 3
+    SIMILARITY_THRESHOLD: float = 0.7
 
-class ModelConfig(BaseModel):
-    provider: str
-    model_name: str
-    api_key_env: str
-    temperature: Optional[float] = 0.7
+    class Config:
+        env_file = ".env"
 
-class VectorDBConfig(BaseModel):
-    type: str
-    path: str
-    similarity_threshold: float
-    top_n: int
+    @classmethod
+    def load_from_yaml(cls, path: str = "config/app.yaml"):
+        if os.path.exists(path):
+            with open(path, "r", encoding="utf-8") as f:
+                config_data = yaml.safe_load(f)
+                return cls(**config_data)
+        return cls()
 
-class SplitterConfig(BaseModel):
-    chunk_size: int
-    overlap: int
-
-class AppConfig(BaseModel):
-    server: ServerConfig
-    model: dict # Simplified for now, can be nested
-    vector_db: VectorDBConfig
-    splitter: SplitterConfig
-
-class Settings:
-    _instance = None
-
-    def __new__(cls):
-        if cls._instance is None:
-            cls._instance = super(Settings, cls).__new__(cls)
-            cls._instance.load_config()
-        return cls._instance
-
-    def load_config(self):
-        config_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "config", "app.yaml")
-        with open(config_path, "r", encoding="utf-8") as f:
-            self.config_data = yaml.safe_load(f)
-        
-        self.server = ServerConfig(**self.config_data['server'])
-        self.vector_db = VectorDBConfig(**self.config_data['vector_db'])
-        self.splitter = SplitterConfig(**self.config_data['splitter'])
-        # Simplified model config access
-        self.model_embedding = self.config_data['model']['embedding']
-        self.model_llm = self.config_data['model']['llm']
-
-settings = Settings()
+@lru_cache()
+def get_settings():
+    # Priority: Env Vars > YAML > Defaults
+    # For now, just simple loading
+    return Settings()
