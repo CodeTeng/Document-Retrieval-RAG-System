@@ -48,7 +48,7 @@ export const useChatStore = defineStore('chat', () => {
         // Update previous step status to done
         if (currentProcess.length > 0 && step.step !== 'answer' && step.step !== 'completed') {
            const lastStep = currentProcess[currentProcess.length - 1]
-           if (lastStep.status === 'loading') {
+           if (lastStep && lastStep.status === 'loading') {
               lastStep.status = 'done'
            }
         }
