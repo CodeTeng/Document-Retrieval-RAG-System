@@ -164,9 +164,8 @@
 
 <script setup lang="ts">
 import { ref, nextTick, watch } from 'vue'
-import { queryQuestion, type QueryResponse } from '@/api/query'
+import { queryQuestion } from '@/api/query'
 import MarkdownIt from 'markdown-it'
-import { ElMessage } from 'element-plus'
 
 const md = new MarkdownIt({
     html: true,
