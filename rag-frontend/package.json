@@ -12,6 +12,8 @@
     "@tailwindcss/forms": "^0.5.11",
     "@tailwindcss/postcss": "^4.1.18",
     "@types/markdown-it": "^14.1.2",
+    "@vue-office/docx": "^1.6.3",
+    "@vue-office/pdf": "^2.0.10",
     "axios": "^1.13.4",
     "dropzone-vue": "^0.1.11",
     "element-plus": "^2.13.2",

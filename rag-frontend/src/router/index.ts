@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import DocManage from '../views/DocManage.vue'
-import RagQuery from '../views/RagQuery.vue'
+import Chat from '../views/Chat.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -12,8 +12,8 @@ const router = createRouter({
     },
     {
       path: '/query',
-      name: 'rag-query',
-      component: RagQuery
+      name: 'chat',
+      component: Chat
     }
   ]
 })
