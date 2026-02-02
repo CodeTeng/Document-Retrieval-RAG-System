@@ -59,7 +59,7 @@ npm run dev
 
 | 文档管理 | 智能问答 |
 |----------|----------|
-| ![Doc Manage](https://via.placeholder.com/400x250?text=Document+Management) | ![Chat Interface](https://via.placeholder.com/400x250?text=Chat+Interface) |
+| ![Doc Manage](./images/1.jpg) | ![Chat Interface](./images/2.jpg) |
 
 ## 📝 License
 
